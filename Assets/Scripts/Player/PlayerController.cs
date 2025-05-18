@@ -6,25 +6,32 @@ public class PlayerController : MonoBehaviour
     #region Private Serialized Variables
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Animator playerAnim;
+    [SerializeField] private float slidingPower = 20f;
     #endregion
 
     #region Private Variables
     private Vector2 touchStartPos;
-    private string deathAnimationName = "Death";
+    private string deathAnimationName = "PlayerDeath";
+    private Rigidbody2D playerRB;
     #endregion
 
     #region Monobehaviour
     private void Awake()
     {
+        playerRB = GetComponent<Rigidbody2D>();
+        playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         GameService.Instance.SetPlayerController(this);
     }
     void Update()
     {
-        // Keyboard movement (for testing)
+        if (GameService.Instance.GetUIManager().GetIsGameOver())
+            return;
+
+        // Keyboard movement
         float horizontal = Input.GetAxis("Horizontal");
         transform.Translate(Vector2.right * horizontal * moveSpeed * Time.deltaTime);
 
-        // Swipe movement (mobile)
+        // Swipe movement mobile
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -38,7 +45,7 @@ public class PlayerController : MonoBehaviour
                 if (Mathf.Abs(deltaX) > 50f)
                 {
                     Vector2 direction = deltaX > 0 ? Vector2.right : Vector2.left;
-                    transform.Translate(direction * moveSpeed * Time.deltaTime * 20); // boost
+                    transform.Translate(direction * moveSpeed * Time.deltaTime * slidingPower);
                 }
             }
         }
@@ -67,6 +74,7 @@ public class PlayerController : MonoBehaviour
     #region Public Functions
     public IEnumerator PlayDeathAnimation()
     {
+        playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
         if (playerAnim == null)
         {
             Debug.LogWarning("Player Animator is not assigned!");
@@ -90,7 +98,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
             stateInfo = playerAnim.GetCurrentAnimatorStateInfo(0);
         }
-
+        yield return new WaitForSeconds(0.5f);
         GameService.Instance.GetUIManager().ExecuteGameOverLogic();
     }
     #endregion

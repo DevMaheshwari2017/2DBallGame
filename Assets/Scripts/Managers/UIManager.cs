@@ -109,7 +109,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         gameoverPanel.SetActive(false);
         pausePanel.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reloading scene 
     }
 
     private void Home() 
@@ -122,6 +122,7 @@ public class UIManager : MonoBehaviour
     #region Public Functions
     public void GameOver(bool playDeathAnim = false) 
     {
+        isGameOver=true;
         if (playDeathAnim) 
         {
             StartCoroutine(GameService.Instance.GetPlayerController().PlayDeathAnimation());
@@ -135,12 +136,16 @@ public class UIManager : MonoBehaviour
     public void ExecuteGameOverLogic() 
     {
         Time.timeScale = 0f;
-        isGameOver=true;
         gameoverPanel.SetActive(true);
     }
     public void AddScore(int amount) 
     {
         scoreText.text = "Score: " + amount.ToString();
     }
+    #endregion
+
+    #region Getter
+
+    public bool GetIsGameOver() => isGameOver;
     #endregion
 }

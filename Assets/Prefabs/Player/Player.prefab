@@ -201,5 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436cd1ad956961a44b3df13634c0d84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7.5
   playerAnim: {fileID: 6110835998007625213}
+  slidingPower: 20

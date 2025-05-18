@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24ee9edbf042bcd4ca0678ed65b39392, type: 3}
-  m_Name: Coin
+  m_Name: Spikes
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3675872736413603314, guid: c9cdda427f8d896419bdbb587c056c35, type: 3}
-  spawnOffsetRange: {x: 2.7, y: -2.7}
-  spawnProbability: 0.75
+  prefab: {fileID: 1049606260817308835, guid: 648bbb10bc0b1e649813d9815dfc11f6, type: 3}
+  spawnOffsetRange: {x: -2.7, y: 2.7}
+  spawnProbability: 0.5

@@ -6,8 +6,6 @@ public class Obstacles : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) 
         {
-            Animator anim = collision.gameObject.GetComponent<Animator>();
-            anim.SetTrigger("Death");
             GameService.Instance.GetUIManager().GameOver(true);
         }
     }

@@ -5,7 +5,7 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform bg1;
     [SerializeField] private Transform bg2;
-
+    [SerializeField] private float platformMovingSpeed = 5;
     private Transform player;
     private float colliderSzie;
     private float highestY;
@@ -17,6 +17,11 @@ public class CameraFollow : MonoBehaviour
         colliderSzie = bg1.GetComponent<BoxCollider2D>().size.y;
     }
 
+    private void Update()
+    {
+        bg1.Translate(Vector3.down * Time.deltaTime * platformMovingSpeed, Space.World);
+        bg2.Translate(Vector3.down * Time.deltaTime * platformMovingSpeed, Space.World);
+    }
     private void FixedUpdate()
     {
         SwitchBG();
@@ -24,7 +29,7 @@ public class CameraFollow : MonoBehaviour
 
     private void SwitchBG() 
     {
-        if (transform.position.y > bg2.position.y) 
+        if (player.position.y > bg2.position.y) 
         {
             bg1.position = new Vector3(bg1.position.x, bg1.position.y + colliderSzie, bg1.position.z);
             Transform temp = bg1;
@@ -34,10 +39,10 @@ public class CameraFollow : MonoBehaviour
     }
     void LateUpdate()
     {
-        if (player.position.y > highestY)
-        {
-            highestY = player.position.y;
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, highestY, transform.position.z), 0.2f);    
-        }
+        //if (player.position.y > highestY)
+        //{
+        //    highestY = player.position.y;
+        //    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, highestY, transform.position.z), 0.2f);    
+        //}
     }
 }
