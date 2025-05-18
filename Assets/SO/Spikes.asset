@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 1049606260817308835, guid: 648bbb10bc0b1e649813d9815dfc11f6, type: 3}
   spawnOffsetRange: {x: -2.7, y: 2.7}
   spawnProbability: 0.5
+  requiresPlatform: 1
