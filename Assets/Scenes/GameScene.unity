@@ -289,21 +289,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9818bf7d43107045ac84808c55a2ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swapnableObjectsContainer: {fileID: 86230232}
   platformLayer:
     serializedVersion: 2
     m_Bits: 64
   spawnBlockingLayer:
     serializedVersion: 2
     m_Bits: 384
-  playerPrefab: {fileID: 1225606636988093934, guid: cab1701ef8015e44788f68ca92dbb9ec, type: 3}
-  spawnPoint: {fileID: 2127779074}
+  swapnableObjectsContainer: {fileID: 86230232}
   spawnables:
   - {fileID: 11400000, guid: f126662841863774f97fe933ec046c12, type: 2}
   - {fileID: 11400000, guid: f1d862f76e5e579488c82acfb6ce4c6e, type: 2}
   - {fileID: 11400000, guid: 4fe1edce05bf20047ad6c17ac0a4ec39, type: 2}
   spawnDistanceAhead: 10
   distanceBetweenSpawns: 2
+  atPlatformSpawnPositions: []
+  spawnPoint: {fileID: 2127779074}
+  playerPrefab: {fileID: 1225606636988093934, guid: cab1701ef8015e44788f68ca92dbb9ec, type: 3}
 --- !u!114 &993271573 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 654333978813061288, guid: fdd49dcd302191a4c99641d58fd83486, type: 3}

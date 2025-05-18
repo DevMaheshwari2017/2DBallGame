@@ -204,3 +204,5 @@ MonoBehaviour:
   moveSpeed: 7.5
   playerAnim: {fileID: 6110835998007625213}
   slidingPower: 20
+  squashAmount: 2.5
+  squashDuration: 5.5

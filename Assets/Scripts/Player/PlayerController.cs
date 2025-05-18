@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,9 +7,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Animator playerAnim;
     [SerializeField] private float slidingPower = 20f;
+    [SerializeField] private float squashAmount = 0.2f;
+    [SerializeField] private float squashDuration = 0.1f; 
     #endregion
 
     #region Private Variables
+    private Vector3 originalScale;
     private Vector2 touchStartPos;
     private string deathAnimationName = "PlayerDeath";
     private Rigidbody2D playerRB;
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         GameService.Instance.SetPlayerController(this);
+        originalScale = transform.localScale;
     }
     void Update()
     {
@@ -53,12 +57,25 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Platform"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Platform"))
         {
-            //playerAnim.SetTrigger("PlatformCollision");
+            if (collision.contacts.Length > 0)
+            {
+                Vector2 normal = collision.contacts[0].normal;
+
+                // Determine squeeze axis
+                if (Mathf.Abs(normal.y) > Mathf.Abs(normal.x))
+                {
+                    // Vertical collision → squash vertically (flatten height)
+                    StartCoroutine(Squash(new Vector3(1 + squashAmount, 1 - squashAmount, 1)));
+                }
+                else
+                {
+                    // Horizontal collision → squash horizontally
+                    StartCoroutine(Squash(new Vector3(1 - squashAmount, 1 + squashAmount, 1)));
+                }
+            }
         }
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -100,6 +117,35 @@ public class PlayerController : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
         GameService.Instance.GetUIManager().ExecuteGameOverLogic();
+    }
+    #endregion
+
+    #region Private Functions
+    private IEnumerator Squash(Vector3 targetScale)
+    {
+        // Animate to squashed scale
+        float elapsed = 0f;
+        while (elapsed < squashDuration)
+        {
+            transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsed / squashDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Hold the squashed scale briefly
+        transform.localScale = targetScale;
+        yield return new WaitForSeconds(0.05f);
+
+        // Animate back to original scale
+        elapsed = 0f;
+        while (elapsed < squashDuration)
+        {
+            transform.localScale = Vector3.Lerp(targetScale, originalScale, elapsed / squashDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localScale = originalScale;
     }
     #endregion
 }
