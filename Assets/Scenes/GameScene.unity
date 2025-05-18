@@ -473,7 +473,6 @@ GameObject:
   - component: {fileID: 1439960155}
   - component: {fileID: 1439960154}
   - component: {fileID: 1439960153}
-  - component: {fileID: 1439960157}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -566,30 +565,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1439960157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439960152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 237a11fc6aa3c664ba3b36c4f779a0d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainMenuScene: 0
-  pausePanel: {fileID: 1502793274}
-  pausePanelHomeBtn: {fileID: 242097941}
-  pausePanelResumeBtn: {fileID: 2022790786}
-  pausePanelRestartBtn: {fileID: 1805940508}
-  pausePanelQuitBtn: {fileID: 607154586}
-  pausePanelCrossBtn: {fileID: 1034125163}
-  gameoverPanel: {fileID: 1519628281}
-  gameoverHomeBtn: {fileID: 529783447}
-  gameoverRestartBtn: {fileID: 523339703}
-  scorePanel: {fileID: 614763594}
-  scoreText: {fileID: 993271573}
 --- !u!1 &1482226470
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1897807456
 Transform:
   m_ObjectHideFlags: 0
@@ -1110,7 +1085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc1fc3d62ca566489fe8e94906e145a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 1439960157}
+  uiManager: {fileID: 1897807457}
   scoreManager: {fileID: 1482226471}
   coinManager: {fileID: 1814904475}
 --- !u!4 &2032560227
