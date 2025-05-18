@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 8540204612310926432, guid: ecab04585c025074db3bdeef28a756a9, type: 3}
   spawnOffsetRange: {x: -1.5, y: 1}
-  spawnProbability: 0.3
+  spawnProbability: 0.5
   requiresPlatform: 0
   type: 1
