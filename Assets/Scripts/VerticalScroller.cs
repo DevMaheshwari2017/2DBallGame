@@ -3,6 +3,7 @@ using UnityEngine;
 public class VerticalScroller : MonoBehaviour
 {
     #region Serialized Fields
+    [SerializeField] private Transform backgroundsParent;
     [SerializeField] private Transform bg1;
     [SerializeField] private Transform bg2;
     [SerializeField] private Transform bg3;
@@ -26,10 +27,7 @@ public class VerticalScroller : MonoBehaviour
 
     private void Update()
     {
-        foreach (var bg in bgs)
-        {
-            bg.Translate(Vector3.down * Time.deltaTime * platformMovingSpeed, Space.World);
-        }
+        backgroundsParent.Translate(Vector3.down * Time.deltaTime * platformMovingSpeed, Space.World);
     }
 
     private void FixedUpdate()

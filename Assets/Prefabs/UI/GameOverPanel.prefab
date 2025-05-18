@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 5797137348122113757}
   - component: {fileID: 8224023943232492832}
   - component: {fileID: 7790346306429291760}
+  - component: {fileID: 6821028991059443069}
   m_Layer: 5
   m_Name: RestartBtn
   m_TagString: Untagged
@@ -111,8 +112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 817.9923, y: 575.0537}
-  m_SizeDelta: {x: 423.006, y: 119.893}
+  m_AnchoredPosition: {x: 853.9565, y: 575.0537}
+  m_SizeDelta: {x: 351.078, y: 119.893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5797137348122113757
 CanvasRenderer:
@@ -171,7 +172,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -196,6 +197,28 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &6821028991059443069
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2196278259700901202}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3513a3582bf8254a91d9131e8d5e042, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2926299480621232036
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +503,7 @@ GameObject:
   - component: {fileID: 6506136657496669346}
   - component: {fileID: 2584717019183166837}
   - component: {fileID: 3752772784879838650}
+  - component: {fileID: 6170372919255479295}
   m_Layer: 5
   m_Name: HomeBtn
   m_TagString: Untagged
@@ -504,8 +528,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 288, y: 575.0499}
-  m_SizeDelta: {x: 414.991, y: 119.89}
+  m_AnchoredPosition: {x: 268.01373, y: 575.0499}
+  m_SizeDelta: {x: 375.018, y: 119.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6506136657496669346
 CanvasRenderer:
@@ -564,7 +588,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -589,6 +613,28 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &6170372919255479295
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5486783002410174763}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3513a3582bf8254a91d9131e8d5e042, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8631252440069259917
 GameObject:
   m_ObjectHideFlags: 0

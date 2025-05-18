@@ -16,3 +16,4 @@ MonoBehaviour:
   spawnOffsetRange: {x: -2.7, y: 2.7}
   spawnProbability: 0.5
   requiresPlatform: 1
+  type: 1
