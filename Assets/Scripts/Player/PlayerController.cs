@@ -5,6 +5,9 @@ public class PlayerController : MonoBehaviour
 {
     #region Private Serialized Variables
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float swipeThreshold = 50f;
+    [SerializeField] private float swipeMoveDistance = 2f;
+    [SerializeField] private float swipeDuration = 0.2f;
     [SerializeField] private Animator playerAnim;
     [SerializeField] private float slidingPower = 20f;
     [SerializeField] private float squashAmount = 0.2f;
@@ -14,6 +17,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Private Variables
+    private bool isSwiping;
     private Vector3 originalScale;
     private Vector2 touchStartPos;
     private string deathAnimationName = "PlayerDeath";
@@ -43,7 +47,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector2.right * horizontal * moveSpeed * Time.deltaTime);
 
         /// Swipe movement mobile
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && !isSwiping)
         {
             Touch touch = Input.GetTouch(0);
 
@@ -53,10 +57,11 @@ public class PlayerController : MonoBehaviour
             else if (touch.phase == TouchPhase.Ended)
             {
                 float deltaX = touch.position.x - touchStartPos.x;
-                if (Mathf.Abs(deltaX) > 50f)
+                if (Mathf.Abs(deltaX) > swipeThreshold)
                 {
                     Vector2 direction = deltaX > 0 ? Vector2.right : Vector2.left;
-                    transform.Translate(direction * moveSpeed * Time.deltaTime * slidingPower);
+                    Vector2 moveTo = (Vector2)transform.position + direction * swipeMoveDistance;
+                    StartCoroutine(SmoothMove(moveTo));
                 }
             }
         }
@@ -132,6 +137,23 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Private Functions
+
+    private IEnumerator SmoothMove(Vector2 endPosition)
+    {
+        isSwiping = true;
+        Vector2 startPosition = transform.position;
+        float elapsed = 0f;
+
+        while (elapsed < swipeDuration)
+        {
+            playerRB.MovePosition(Vector2.Lerp(startPosition, endPosition, elapsed / swipeDuration));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        playerRB.MovePosition(endPosition);
+        isSwiping = false;
+    }
     private IEnumerator Squash(Vector3 targetScale)
     {
         ///Sqaush animation 

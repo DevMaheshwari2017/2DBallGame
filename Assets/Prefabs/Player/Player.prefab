@@ -203,7 +203,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7.5
   playerAnim: {fileID: 6110835998007625213}
-  slidingPower: 20
+  slidingPower: 1
   squashAmount: 8
   squashDuration: 100
+  squashAnimationDuration: 1
   selectedSkinDataHolder: {fileID: 11400000, guid: 242b4e1e81f28064e87d4d4f85c690ee, type: 2}

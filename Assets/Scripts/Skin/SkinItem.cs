@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SkinItem : MonoBehaviour
+public class SkinItem : MonoBehaviour, IPointerExitHandler
 {
     #region Private Serialized Variables
     [SerializeField] private SkinData skinData;
@@ -130,6 +131,17 @@ public class SkinItem : MonoBehaviour
             // Default state when game is first run
             skinPurchasedState = SkinPurchasedState.Buy;
             purchasedStatus.text = SkinPurchasedState.Buy.ToString();
+        }
+    }
+    #endregion
+
+    #region IPointerExitHandler Interface
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // Deselect the UI button when the pointer leaves it
+        if (EventSystem.current.currentSelectedGameObject == buyBtn.gameObject)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
     #endregion
