@@ -125,6 +125,10 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Public Functions
+    /// <summary>
+    /// uses optional bool to play player death anim, as it only suppose to play when user die from obstacle interaction
+    /// </summary>
+    /// <param name="playDeathAnim"></param>
     public void GameOver(bool playDeathAnim = false) 
     {
         isGameOver=true;

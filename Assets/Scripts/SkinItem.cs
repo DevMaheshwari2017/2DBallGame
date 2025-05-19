@@ -53,6 +53,9 @@ public class SkinItem : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// Force fully makes a skin to select state 
+    /// </summary>
     #region Public Functions
     public void ForceToSelectState()
     {
@@ -62,6 +65,11 @@ public class SkinItem : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// Works in 3 ways - firsy checks if the skin is not bought - buy it and turns it to select state, 
+    /// on clicked again turn the state to selected and change player skin,
+    /// on further click turn the skin to unselect state = select, and activates default skin, as no skin is selected now (only one skin can be selected at once)
+    /// </summary>
     #region Private Functions
     private void BuyButton() 
     {
@@ -92,6 +100,9 @@ public class SkinItem : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Save the skin state into playerprefs 
+    /// </summary>
     private void SaveSkinState()
     {
         string key = SkinPrefKeyPrefix + skinData.skinName;
@@ -99,6 +110,9 @@ public class SkinItem : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    /// <summary>
+    /// Whenever user open the game check playerprefs and load the selected skin 
+    /// </summary>
     private void LoadSkinState()
     {
         string key = SkinPrefKeyPrefix + skinData.skinName;

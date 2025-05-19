@@ -28,6 +28,9 @@ public class SpawnManager : MonoBehaviour
     #endregion
 
     #region Monobehaviour
+    /// <summary>
+    /// Spawn player
+    /// </summary>
     private void Awake()
     {
         player = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
@@ -39,6 +42,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
+        // Spawn objects at a spawnDistanceAhead from player, and check it player has crossed it then spawn again.
         while (player.transform.position.y + spawnDistanceAhead > nextSpawnY)
         {
             SpawnAt(nextSpawnY);
@@ -49,6 +53,14 @@ public class SpawnManager : MonoBehaviour
     #endregion
 
     #region Private Functions
+    /// <summary>
+    /// Go through the list of spawnables serialized objects, based on there probability of spawning it spawns them
+    /// Goes through a for loop inside, with a defined number of attempts to spawn a spawnable object, and breaks the loop if object get's spawned
+    /// plus also checks if a spawnable require platform to spawn, in that case calls CheckForNearestSpawnPosition() and spawn at that pos.
+    /// Uses randome.range and x offset define in SO to spawn the object in x axis randomly.
+    /// do a last check using Physics2D.OverlapBox to make sure the objects don't get spawned on each other or on spawnBlockingLayer.
+    /// </summary>
+    /// <param name="yPos"></param>
     private void SpawnAt(float yPos)
     {
         foreach (var spawnable in spawnables)
@@ -80,7 +92,7 @@ public class SpawnManager : MonoBehaviour
                         spawnPos = nearest.position;
                     }
 
-                    // Check for overlap with spawn-blocking layer (platforms, other objects, backgrounds)
+                    // Check for overlap with spawn-blocking layer (platform or something else if required)
                     Collider2D hitCollider = Physics2D.OverlapBox(spawnPos, prefabSize, 0f, spawnBlockingLayer);
                     if (hitCollider == null)
                     {
@@ -98,6 +110,12 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Check for nearest pre defined spawn position on platform, from the atPlatformSpawnPositions
+    /// </summary>
+    /// <param name="positions"></param>
+    /// <param name="targetY"></param>
+    /// <returns></returns>
     private Transform CheckForNearestSpawnPosition(List<Transform> positions, float targetY)
     {
         Transform nearest = null;
@@ -115,6 +133,11 @@ public class SpawnManager : MonoBehaviour
 
         return nearest;
     }
+    /// <summary>
+    /// Gets actual object size based on it's local scale and collider
+    /// </summary>
+    /// <param name="prefab"></param>
+    /// <returns></returns>
     private Vector2 GetWorldSize(GameObject prefab)
     {
         BoxCollider2D collider = prefab.GetComponent<BoxCollider2D>();

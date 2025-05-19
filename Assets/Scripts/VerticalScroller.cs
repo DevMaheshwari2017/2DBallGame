@@ -18,6 +18,7 @@ public class VerticalScroller : MonoBehaviour
     #endregion
 
     #region MonoBehaviour Methods
+
     private void Start()
     {
         player = GameService.Instance.GetPlayerController().transform;
@@ -25,6 +26,9 @@ public class VerticalScroller : MonoBehaviour
         bgs = new Transform[] { bg1, bg2, bg3 };
     }
 
+    /// <summary>
+    /// Scroll the BG's parent downwards
+    /// </summary>
     private void Update()
     {
         backgroundsParent.Translate(Vector3.down * Time.deltaTime * platformMovingSpeed, Space.World);
@@ -37,6 +41,10 @@ public class VerticalScroller : MonoBehaviour
     #endregion
 
     #region Private Methods
+    /// <summary>
+    /// When player crosses the middle Bg psotion we move the last bg to top
+    /// Creating a illusion of infinite vertical scroller
+    /// </summary>
     private void RepositionBackgroundIfNeeded()
     {
         SortBackgroundsByY(); // Sort from lowest to highest

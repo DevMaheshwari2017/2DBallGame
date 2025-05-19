@@ -33,6 +33,10 @@ public class ScoreManager : MonoBehaviour
     #endregion
 
     #region Private Functions
+    /// <summary>
+    /// Add time score to total score but only if the time score has an increment of 1 or more
+    /// means delta score > 0 
+    /// </summary>
     private void AddTimeScore()
     {
         timeScore += Time.deltaTime * scoreMultiplier;
@@ -45,7 +49,10 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Update total score ui
+    /// </summary>
+    /// <param name="amount"></param>
     private void UpdateScore(int amount) 
     {
         if (GameService.Instance.GetUIManager() != null)
@@ -53,6 +60,10 @@ public class ScoreManager : MonoBehaviour
             GameService.Instance.GetUIManager().AddScore(amount);
         }
     }
+    /// <summary>
+    /// Increased of score multiplier like subway surfer game, where when a ceratin time passes 
+    /// the amount at which score increase gets greater and greater.
+    /// </summary>
     private void CheckTimePlayed() 
     {
 
@@ -69,6 +80,9 @@ public class ScoreManager : MonoBehaviour
 
     #endregion
 
+    /// <summary>
+    /// When a player collects a coin we also increment our score by a certian value
+    /// </summary>
     #region Public Functions
     public void AddCoinScore() 
     {
@@ -77,6 +91,9 @@ public class ScoreManager : MonoBehaviour
         UpdateScore(totalScore);
         Debug.Log("Total score is " + totalScore);
     }
+    /// <summary>
+    /// Reset Score
+    /// </summary>
     public void ResetScore() 
     {
         totalScore = 0;

@@ -35,7 +35,12 @@ public class ShopManager : MonoBehaviour
         notEnoughCoinMessage.SetActive(false);
     }
     #endregion
+
     #region Public Functions
+    /// <summary>
+    /// Whenever player select a skin from his purchased skins, all the other skins become select = Unselected
+    /// </summary>
+    /// <param name="selectedSkin"></param>
     public void OnSkinSelected(SkinItem selectedSkin)
     {
         foreach (var item in skinItems)
@@ -46,6 +51,11 @@ public class ShopManager : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Checks is user has enough coins to purchase skins
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
     public bool CanPurchaseSkin(SkinData data) 
     {
         int currentCoins = PlayerPrefs.GetInt(CoinKey);
@@ -63,6 +73,12 @@ public class ShopManager : MonoBehaviour
         }
             
     }
+
+    /// <summary>
+    /// Chnage player skin based to deafult or another color based on the skindata and optional bool
+    /// </summary>
+    /// <param name="skinData"></param>
+    /// <param name="toDefault"></param>
     public void ChangePlayerSkin(SkinData skinData, bool toDefault = false) 
     {
         if (toDefault)
@@ -77,6 +93,10 @@ public class ShopManager : MonoBehaviour
     #endregion
 
     #region Private Functions
+    /// <summary>
+    /// Shows Not enough coin error message for 2 sec
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ShowNotEnoughCoinMessage() 
     {
         notEnoughCoinMessage.SetActive(true);
@@ -91,6 +111,9 @@ public class ShopManager : MonoBehaviour
     #endregion
 }
 
+/// <summary>
+/// Enum which tracks the state of skins
+/// </summary>
 public enum SkinPurchasedState 
 {
     Buy,

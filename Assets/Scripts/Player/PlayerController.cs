@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     #region Monobehaviour
     private void Awake()
     {
+        /// Change Player color based on skin selected from shop usin selectedSkinDataHolder SO
         if (selectedSkinDataHolder != null && selectedSkinDataHolder.selectedSkin != null)
         {
             GetComponent<SpriteRenderer>().color = selectedSkinDataHolder.selectedSkin.skinColor;
@@ -37,11 +38,11 @@ public class PlayerController : MonoBehaviour
         if (GameService.Instance.GetUIManager().GetIsGameOver())
             return;
 
-        // Keyboard movement
+        /// Keyboard movement
         float horizontal = Input.GetAxis("Horizontal");
         transform.Translate(Vector2.right * horizontal * moveSpeed * Time.deltaTime);
 
-        // Swipe movement mobile
+        /// Swipe movement mobile
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -63,7 +64,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Platform") || collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        /// Playing squash animation when player collided with platforms
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Platform"))
         {
             if (collision.contacts.Length > 0)
             {
@@ -86,6 +89,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /// gameover
         if (collision.gameObject.CompareTag("GameOver"))
         {
             GameService.Instance.GetUIManager().GameOver();
@@ -97,6 +101,7 @@ public class PlayerController : MonoBehaviour
     #region Public Functions
     public IEnumerator PlayDeathAnimation()
     {
+        /// Playing death animation, if player dies from obstacle interaction
         playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
         if (playerAnim == null)
         {
@@ -129,6 +134,8 @@ public class PlayerController : MonoBehaviour
     #region Private Functions
     private IEnumerator Squash(Vector3 targetScale)
     {
+        ///Sqaush animation 
+
         // Animate to squashed scale
         float elapsed = 0f;
         while (elapsed < squashDuration)

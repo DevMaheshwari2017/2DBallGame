@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class GameService : GenericMonoSingleton<GameService>
 {
+    /// <summary>
+    /// A ServiceLocator derived from GenericMonoSingleton to access all the controllers/Managers/Service from a single script - good for small level project like this
+    /// </summary>
     #region Private Serialized Variables
     [SerializeField] private UIManager uiManager;
     [SerializeField] private ScoreManager scoreManager;

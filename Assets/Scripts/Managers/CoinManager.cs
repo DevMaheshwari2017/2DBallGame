@@ -30,6 +30,9 @@ public class CoinManager : MonoBehaviour
     }
     #region Public Functions
 
+    /// <summary>
+    /// Whenever player collects a coin we add it to playerprefs
+    /// </summary>
     public void CoinCollected() 
     {
         currentCoint += amountToIncrease;
@@ -39,6 +42,9 @@ public class CoinManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    /// <summary>
+    /// Whenever player spends some coins we update playerprefs
+    /// </summary>
     public void CoinSpend(int amountSpend) 
     {
         totalCoinAmount -= amountSpend;
@@ -47,6 +53,9 @@ public class CoinManager : MonoBehaviour
         UpdateTotalCoinUI();
     }
 
+    /// <summary>
+    /// Updating tottal coin ui in main menu scene
+    /// </summary>
     private void UpdateTotalCoinUI() 
     {
         var scene = SceneManager.GetActiveScene();
