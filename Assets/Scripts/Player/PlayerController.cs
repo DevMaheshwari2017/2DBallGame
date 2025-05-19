@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnim;
     [SerializeField] private float slidingPower = 20f;
     [SerializeField] private float squashAmount = 0.2f;
-    [SerializeField] private float squashDuration = 0.1f; 
+    [SerializeField] private float squashDuration = 0.1f;
+    [SerializeField] private SelectedSkinDataHolder selectedSkinDataHolder;
     #endregion
 
     #region Private Variables
@@ -21,6 +22,10 @@ public class PlayerController : MonoBehaviour
     #region Monobehaviour
     private void Awake()
     {
+        if (selectedSkinDataHolder != null && selectedSkinDataHolder.selectedSkin != null)
+        {
+            GetComponent<SpriteRenderer>().color = selectedSkinDataHolder.selectedSkin.skinColor;
+        }
         playerRB = GetComponent<Rigidbody2D>();
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         GameService.Instance.SetPlayerController(this);

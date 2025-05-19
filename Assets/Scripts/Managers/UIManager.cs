@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    #region Private Variable
+    #region Private Seriliazed Variable
     [SerializeField] private int mainMenuScene = 0;
 
     [Space(5)]
@@ -31,8 +31,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject scorePanel;
     [SerializeField] private TextMeshProUGUI scoreText;
 
-    private bool isGameOver = false;
+    [Space(5)]
+    [Header("Coin")]
+    [SerializeField] private TextMeshProUGUI coinCollectedText;
+    #endregion
 
+    #region Private Seriliazed Variable
+    private bool isGameOver = false;
     #endregion
 
     #region Monobehaviour Functions
@@ -141,6 +146,11 @@ public class UIManager : MonoBehaviour
     public void AddScore(int amount) 
     {
         scoreText.text = "Score: " + amount.ToString();
+    }
+
+    public void CoinCollected(int amount) 
+    {
+        coinCollectedText.text = "Coin Collected: " + amount.ToString();
     }
     #endregion
 

@@ -206,3 +206,4 @@ MonoBehaviour:
   slidingPower: 20
   squashAmount: 2.5
   squashDuration: 5.5
+  selectedSkinDataHolder: {fileID: 11400000, guid: 242b4e1e81f28064e87d4d4f85c690ee, type: 2}
