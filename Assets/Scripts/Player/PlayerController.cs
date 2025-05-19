@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float slidingPower = 20f;
     [SerializeField] private float squashAmount = 0.2f;
     [SerializeField] private float squashDuration = 0.1f;
+    [SerializeField] private float squashAnimationDuration = 1.0f;
     [SerializeField] private SelectedSkinDataHolder selectedSkinDataHolder;
     #endregion
 
@@ -139,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
         // Hold the squashed scale briefly
         transform.localScale = targetScale;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(squashAnimationDuration);
 
         // Animate back to original scale
         elapsed = 0f;

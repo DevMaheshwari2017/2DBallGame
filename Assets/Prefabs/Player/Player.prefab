@@ -204,6 +204,6 @@ MonoBehaviour:
   moveSpeed: 7.5
   playerAnim: {fileID: 6110835998007625213}
   slidingPower: 20
-  squashAmount: 2.5
-  squashDuration: 5.5
+  squashAmount: 8
+  squashDuration: 100
   selectedSkinDataHolder: {fileID: 11400000, guid: 242b4e1e81f28064e87d4d4f85c690ee, type: 2}
